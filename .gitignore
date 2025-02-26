@@ -1,5 +1,7 @@
 __pycache__/
 
 assets/
+temp/
+outputs/
 
 output.wav

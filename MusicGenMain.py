@@ -6,7 +6,7 @@ import Modules.DlTranslator as Translator
 import Modules.VideoDescription as VideoDescription
 
 def MusicGenerateBasic(description, duration, outputName):
-    description = [Translator.translator(description)]
+    description = [description]
     print(description)
 
     model = MusicGen.get_pretrained('facebook/musicgen-melody')
@@ -22,7 +22,7 @@ def MusicGenerateBasic(description, duration, outputName):
         # Will save under {outputName}.wav, with loudness normalization at -22 dbW LUFS which is maximum of TV Protocol.
         audio_write(outputName, one_wav, model.sample_rate, strategy="loudness", loudness_headroom_db=22, loudness_compressor=True)
 
-def MusicGenerateWithMelody(description,duration,melody,outputName):
+def MusicGenerateWithMelodyBasic(description,duration,melody,outputName):
     description = [Translator.translator(description)]
     description=[description]
     print(description)
@@ -35,6 +35,14 @@ def MusicGenerateWithMelody(description,duration,melody,outputName):
 
     for idx, one_wav in enumerate(wav):
         audio_write(outputName, one_wav, model.sample_rate, strategy="loudness", loudness_headroom_db=22, loudness_compressor=True)
+
+def MusicGenerate(description,duration, outputName):
+    description=Translator.translator(description)
+    MusicGenerateBasic(description,duration,outputName)
+
+def MusicGenerateWithMelody(description,duration,melody,outputName):
+    description=Translator.translator(description)
+    MusicGenerateBasic(description,duration,melody,outputName)
 
 def bgmGenerateWithVideo(inputVideo,outputName):
     duration, description = VideoDescription.BGMPromptGenerator(inputVideo)
