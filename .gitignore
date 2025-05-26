@@ -4,4 +4,4 @@ assets/
 temp/
 outputs/
 
-output.wav
+nohup.out
