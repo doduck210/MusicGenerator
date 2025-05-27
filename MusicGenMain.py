@@ -24,7 +24,6 @@ def MusicGenerateBasic(description, duration, outputName):
 
 def MusicGenerateWithMelodyBasic(description,duration,melody,outputName):
     description = [Translator.translator(description)]
-    description=[description]
     print(description)
 
     model = MusicGen.get_pretrained('facebook/musicgen-melody')
@@ -42,7 +41,7 @@ def MusicGenerate(description,duration, outputName):
 
 def MusicGenerateWithMelody(description,duration,melody,outputName):
     description=Translator.translator(description)
-    MusicGenerateBasic(description,duration,melody,outputName)
+    MusicGenerateWithMelodyBasic(description,duration,melody,outputName)
 
 def bgmGenerateWithVideo(inputVideo,outputName):
     duration, description = VideoDescription.BGMPromptGenerator(inputVideo)
@@ -50,7 +49,7 @@ def bgmGenerateWithVideo(inputVideo,outputName):
 
 def bgmGenerateWithVideoAndMelody(inputVideo,melody,outputName):
     duration, description = VideoDescription.BGMPromptGenerator(inputVideo)
-    MusicGenerateWithMelody(description,duration,melody,outputName)
+    MusicGenerateWithMelodyBasic(description,duration,melody,outputName)
 
 if __name__ == "__main__":
     bgmGenerateWithVideo('./assets/graduation.mp4','./output')

@@ -28,6 +28,9 @@ sudo apt install ffmpeg
 ```
 
 ### Run and use API
+```shell
+nohup python MusicGenAPI.py
+```
 *All the core functions are defined in MusicGenAPI.py*  
 *You can basically use these without using RestAPI*  
 
